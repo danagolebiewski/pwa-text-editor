@@ -4,18 +4,20 @@ const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file. - done 
-new GenerateSW(),
+// new GenerateSW(), - do I need this one?
 new WebpackPwaManifest({
   name: 'Text Editor',
   short_name: 'text editor',
   description: 'A place to edit text',
   background_color: '#7eb4e2',
   theme_color: '#7eb4e2',
-  start_url: './',
-  publicPath: './',
+  start_url: '/',
+  publicPath: '/',
+  fingerprints: false,
+        inject: true,
   icons: [
     {
-      src: path.resolve('Develop/client/src/images/logo.png'),
+      src: path.resolve('src/images/logo.png'),
       sizes: [96, 128, 192, 256, 384, 512],
       destination: path.join('assets', 'icons'),
     },
