@@ -5,24 +5,7 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 // TODO: Add and configure workbox plugins for a service worker and manifest file. - done 
 // new GenerateSW(), - do I need this one?
-new WebpackPwaManifest({
-  name: 'Text Editor',
-  short_name: 'text editor',
-  description: 'A place to edit text',
-  background_color: '#7eb4e2',
-  theme_color: '#7eb4e2',
-  start_url: '/',
-  publicPath: '/',
-  fingerprints: false,
-        inject: true,
-  icons: [
-    {
-      src: path.resolve('src/images/logo.png'),
-      sizes: [96, 128, 192, 256, 384, 512],
-      destination: path.join('assets', 'icons'),
-    },
-  ],
-}),
+
 
 // TODO: Add CSS loaders and babel to webpack. - done 
 
@@ -38,7 +21,32 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-      
+      new HtmlWebpackPlugin({
+        template: ' ',
+        title: 'J.A.T.E'
+      }),
+      new InjectManifest({
+        swSrc: ' ',
+        swDest: '',
+      }),
+      new WebpackPwaManifest({
+        name: 'Just Another Text Editor',
+        short_name: 'J.A.T.E.',
+        description: 'A place to edit text',
+        background_color: '#7eb4e2',
+        theme_color: '#7eb4e2',
+        start_url: '/',
+        publicPath: '/',
+        fingerprints: false,
+              inject: true,
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
     ],
 
     module: {
